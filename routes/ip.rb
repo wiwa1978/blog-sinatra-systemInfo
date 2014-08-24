@@ -5,6 +5,7 @@
   get "/ip" do
     format_response(IP.all, request.accept)
   end
+
   
   get "/ip/:id" do
     ip ||= IP.get(params[:id]) || halt(404)
@@ -15,7 +16,8 @@
     body = JSON.parse request.body.read
     ip = IP.create(
       private_ip: body['private'],
-      public_ip: body['public'],
+      public_ip:  body['public'],
+      systemname: body['systemname'],
       created_at: Time.now,
       updated_at: Time.now
   )
