@@ -12,7 +12,7 @@
   end
   
   get "/ip/:id/public" do
-   ip ||= IP.find_by_sql("select public_ip FROM ips where id=#{:id}", :properties => [:public_ip]) || halt(404)
+   ip ||= IP.all(:fields => [:public_ip]) || halt(404)
     format_response(ip, request.accept)
   end
 
