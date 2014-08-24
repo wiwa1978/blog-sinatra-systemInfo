@@ -10,16 +10,6 @@
     ip ||= IP.get(params[:id]) || halt(404)
     format_response(ip, request.accept)
   end
-  
-  get "/ip/:id/public" do
-   ip ||= IP.all(:fields => [:id, :public_ip]) || halt(404)
-    format_response(ip, request.accept)
-  end
-
-  get "/ip/:id/private" do
-    ip ||= IP.all(:fields => [:private_ip]) || halt(404)
-    format_response(ip, request.accept)
-  end
 
   post "/ip" do
     body = JSON.parse request.body.read
@@ -37,3 +27,4 @@
     ip ||= IP.get(params[:id]) || halt(404)
     halt 500 unless ip.destroy
   end 
+
