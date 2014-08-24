@@ -38,5 +38,3 @@
     halt 500 unless ip.destroy
   end 
 
-
- Zoo.all(:state => 'IL') & Zoo.all(:tiger_count.gte => 5)
