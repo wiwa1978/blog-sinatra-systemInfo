@@ -12,7 +12,7 @@
   end
   
   get "/ip/:id/public" do
-   ip ||= IP.public_ip(:id => params[:id] ) || halt(404)
+   ip ||= IP.all(:fields => [:public_ip], :id => params[:id] ) || halt(404)
     format_response(ip, request.accept)
   end
 
@@ -37,3 +37,5 @@
     ip ||= IP.get(params[:id]) || halt(404)
     halt 500 unless ip.destroy
   end 
+
+
