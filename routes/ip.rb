@@ -12,12 +12,13 @@
   end
   
   get "/ip/:id/public" do
-   ip ||= IP.get(params[:id]) || halt(404)
+   ip ||= IP.get(params[:id], :public_ip => true) || halt(404)
     format_response(ip, request.accept)
   end
 
   get "/ip/:id/private" do
-    format_response(IP.all, request.accept)
+    ip ||= IP.get(params[:id], :private_ip => true) || halt(404)
+    format_response(ip, request.accept)
   end
 
   post "/ip" do
