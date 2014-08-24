@@ -14,10 +14,7 @@ end
 
 
 configure :production do
-  DataMapper.setup(
-    :default,
-    'postgres://postgres:12345@localhost/sinatra_service'
-  )
+	DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_IVORY_URL'])
 end
 
 require './models/init'
