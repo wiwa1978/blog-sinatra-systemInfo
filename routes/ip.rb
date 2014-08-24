@@ -37,6 +37,3 @@
     ip ||= IP.get(params[:id]) || halt(404)
     halt 500 unless ip.destroy
   end 
-
-MyClass.find_by_sql("SELECT id, name FROM my_classes LIMIT 1",
-  :properties => [:id, :name])
