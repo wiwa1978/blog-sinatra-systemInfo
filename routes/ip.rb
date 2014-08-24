@@ -6,6 +6,10 @@
     format_response(IP.all, request.accept)
   end
 
+  get "/public" do
+    format_response(request.ip, request.accept)
+  end
+  
   get "/ip/:id" do
     ip ||= IP.get(params[:id]) || halt(404)
     format_response(ip, request.accept)
