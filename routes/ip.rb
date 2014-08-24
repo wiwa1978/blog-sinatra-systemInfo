@@ -17,7 +17,7 @@
   end
 
   get "/ip/:id/private" do
-    ip ||= IP.all(:fields => [:private_ip]) & IP.all(:id => params[:id]) || halt(404)
+    ip ||= IP.all(:fields => [:private_ip]) || halt(404)
     format_response(ip, request.accept)
   end
 
