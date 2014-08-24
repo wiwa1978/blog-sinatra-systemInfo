@@ -12,7 +12,7 @@
   end
   
   get "/ip/:id/public" do
-   ip ||= IP.all(:fields => [:public_ip]) & IP.all(:id => params[:id]) || halt(404)
+   ip ||= IP.find_by_sql("select public_ip FROM ips where id=#{:id}", :properties => [:public_ip]) || halt(404)
     format_response(ip, request.accept)
   end
 
@@ -38,3 +38,5 @@
     halt 500 unless ip.destroy
   end 
 
+MyClass.find_by_sql("SELECT id, name FROM my_classes LIMIT 1",
+  :properties => [:id, :name])
