@@ -12,12 +12,12 @@
   end
   
   get "/ip/:id/public" do
-   ip ||= IP.all(:fields => [:public_ip], :id => params[:id] ) || halt(404)
+   ip ||= IP.all(:fields => [:public_ip]) & IP.all(:id => params[:id]) || halt(404)
     format_response(ip, request.accept)
   end
 
   get "/ip/:id/private" do
-    ip ||= IP.get(params[:id], :private_ip => true) || halt(404)
+    ip ||= IP.all(:fields => [:private_ip]) & IP.all(:id => params[:id]) || halt(404)
     format_response(ip, request.accept)
   end
 
@@ -39,3 +39,4 @@
   end 
 
 
+ Zoo.all(:state => 'IL') & Zoo.all(:tiger_count.gte => 5)
