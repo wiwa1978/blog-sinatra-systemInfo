@@ -9,7 +9,7 @@
   get "/public" do
     format_response(request.ip, request.accept)
   end
-  
+
   get "/ip/:id" do
     ip ||= IP.get(params[:id]) || halt(404)
     format_response(ip, request.accept)
@@ -23,7 +23,7 @@
       updated_at: Time.now
   )
   status 201
-  format_response(todo, request.accept)
+  format_response(ip, request.accept)
   end
    
   post "/ip/public" do
